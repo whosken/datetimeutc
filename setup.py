@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(name='datetimeutc',
-                 version='0.2.2.1',
+                 version='0.1',
                  description='Because why are we dealing with timezones?',
                  url='http://github.com/whosken/datetimeutc',
                  author='Ken Hu',
