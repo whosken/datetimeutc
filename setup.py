@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(name='datetimeutc',
-                 version='0.1',
+                 version='0.1.1',
                  description='Because why are we dealing with timezones?',
                  url='http://github.com/whosken/datetimeutc',
                  author='Ken Hu',
@@ -9,4 +9,5 @@ setuptools.setup(name='datetimeutc',
                  license='MIT',
                  packages=['datetimeutc'],
                  install_requires=['pytz','python-dateutil'],
-                 zip_safe=False)
+                 keywords=['datetime','timezone','utc']
+                 )
