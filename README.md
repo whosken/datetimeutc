@@ -2,16 +2,16 @@
 
 ## Because why are we dealing with timezones?
 
-A lightweight datetime utility library which wraps around the standard datetime module, with features from dateutil, and pytz.
+A lightweight datetime utility library which wraps around the standard `datetime` module, with features from dateutil and pytz.
 
-Its purpose is to minimize the effort to convert datetime to/from UTC, a task I found myself doing too often internationalizing web services and apps.
+Its purpose is to minimize the effort to convert datetime to/from UTC, a task I found myself doing too often while internationalizing web services and apps.
 
 This wrapper is designed under these datetime philosophy:
 
 1. datetime should always be timezone aware
 2. datetime should always be handled and stored in UTC time
 3. datetime should always default to UTC time
-4. datetime should not communicate in server local time, in order to secure server location
+4. datetime should not contain server local time
 5. timezone conversions should be done on client side
 
 ## Install
@@ -59,7 +59,7 @@ datetime.datetime(2016, 3, 21, 5, 20, 40, tzinfo=<DstTzInfo 'US/Eastern' EDT-1 d
 
 ## Utilities
 
-Other datetime functions are available for common tasks, e.g. converting to and from javascript timestamp
+Other datetime functions are available for common tasks, e.g. converting to/from javascript timestamp
 
 ```python
 >>> import datetimeutc, datetime
