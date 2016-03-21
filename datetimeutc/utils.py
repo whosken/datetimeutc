@@ -35,16 +35,3 @@ class datetimeutils(object):
     @classmethod
     def from_jstimestamp(cls, jstimestamp):
         return cls.fromtimestamp(jstimestamp / 1000.0)
-    
-    @classmethod
-    def _now(cls):
-        if hasattr(cls, 'now'):
-            return cls.now()
-        elif hasattr(cls, 'today'):
-            return cls.today()
-        raise NotImplemented
-    
-    @classmethod
-    def datetime_from_now(cls, *args, **kwargs):
-        return cls._now() + datetime.timedelta(*args, **kwargs)
-    
