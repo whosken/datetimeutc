@@ -45,6 +45,10 @@ coverage.xml
 *,cover
 .hypothesis/
 
+# Environement
+venv/
+.env
+
 # Translations
 *.mo
 *.pot
