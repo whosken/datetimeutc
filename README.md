@@ -1,10 +1,10 @@
 #datetimeutc
 
-## Because why are we dealing with timezones?
+### A Python datetime wrapper so we can forget about timezones
 
 A lightweight datetime utility library which wraps around the standard `datetime` module, with features from dateutil and pytz.
 
-Its purpose is to minimize the effort to convert datetime to/from UTC, a task I found myself doing too often while internationalizing web services and apps.
+Its purpose is to minimize the effort to convert datetime to/from UTC, a task I found myself doing too often while scaling web services and apps internationally.
 
 This wrapper is designed under these datetime philosophy:
 
