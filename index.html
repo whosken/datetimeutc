@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Datetimeutc by whosken</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Datetimeutc</h1>
+        <p>A Python datetime wrapper so we can forget about timezones</p>
+
+        <p class="view"><a href="https://github.com/whosken/datetimeutc">View the Project on GitHub <small>whosken/datetimeutc</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/whosken/datetimeutc/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/whosken/datetimeutc/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/whosken/datetimeutc">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="datetimeutc" class="anchor" href="#datetimeutc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>datetimeutc</h1>
+
+<h3>
+<a id="a-python-datetime-wrapper-so-we-can-forget-about-timezones" class="anchor" href="#a-python-datetime-wrapper-so-we-can-forget-about-timezones" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A Python datetime wrapper so we can forget about timezones</h3>
+
+<p>A lightweight datetime utility library which wraps around the standard <code>datetime</code> module, with features from dateutil and pytz.</p>
+
+<p>Its purpose is to minimize the effort to convert datetime to/from UTC, a task I found myself doing too often while scaling web services and apps internationally.</p>
+
+<p>This wrapper is designed under these datetime philosophy:</p>
+
+<ol>
+<li>datetime should always be timezone aware</li>
+<li>datetime should always be handled and stored in UTC time</li>
+<li>datetime should always default to UTC time</li>
+<li>datetime should not contain server local time</li>
+<li>timezone conversions should be done on client side</li>
+</ol>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<div class="highlight highlight-source-shell"><pre>pip install datetimeutc</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>The library provides thinly wrappers of datetime classes, e.g. datetime, date, and time.</p>
+
+<p>Instances of these class are created with timezone awareness in UTC time. Users can also pass in <code>None</code> or other timezone, which the library will automatically converts into UTC time.</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> <span class="pl-k">from</span> datetimeutc <span class="pl-k">import</span> Datetime, Date, Time
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> <span class="pl-k">import</span> pytz
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> d <span class="pl-k">=</span> Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">9</span>, <span class="pl-c1">20</span>, <span class="pl-c1">40</span>)
+Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">9</span>, <span class="pl-c1">20</span>, <span class="pl-c1">40</span>, <span class="pl-v">tzinfo</span><span class="pl-k">=</span><span class="pl-k">&lt;</span><span class="pl-c1">UTC</span><span class="pl-k">&gt;</span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">9</span>, <span class="pl-c1">20</span>, <span class="pl-c1">40</span>, <span class="pl-v">tzinfo</span><span class="pl-k">=</span>pytz.timezone(<span class="pl-s"><span class="pl-pds">'</span>US/Eastern<span class="pl-pds">'</span></span>))
+Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">14</span>, <span class="pl-c1">16</span>, <span class="pl-c1">40</span>, <span class="pl-v">tzinfo</span><span class="pl-k">=</span><span class="pl-k">&lt;</span><span class="pl-c1">UTC</span><span class="pl-k">&gt;</span>)</pre></div>
+
+<p>Functions of datetime are all supported.</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> <span class="pl-k">from</span> datetimeutc <span class="pl-k">import</span> Datetime, Date, Time
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> Datetime.now()
+Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">9</span>, <span class="pl-c1">20</span>, <span class="pl-c1">40</span>, <span class="pl-c1">816025</span>, <span class="pl-v">tzinfo</span><span class="pl-k">=</span><span class="pl-k">&lt;</span><span class="pl-c1">UTC</span><span class="pl-k">&gt;</span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> Datetime.now().dst()      
+datetime.timedelta(<span class="pl-c1">0</span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> Datetime.now().timetuple()
+time.struct_time(<span class="pl-v">tm_year</span><span class="pl-k">=</span><span class="pl-c1">2016</span>, <span class="pl-v">tm_mon</span><span class="pl-k">=</span><span class="pl-c1">3</span>, <span class="pl-v">tm_mday</span><span class="pl-k">=</span><span class="pl-c1">21</span>, <span class="pl-v">tm_hour</span><span class="pl-k">=</span><span class="pl-c1">9</span>, <span class="pl-v">tm_min</span><span class="pl-k">=</span><span class="pl-c1">7</span>, <span class="pl-v">tm_sec</span><span class="pl-k">=</span><span class="pl-c1">47</span>, <span class="pl-v">tm_wday</span><span class="pl-k">=</span><span class="pl-c1">0</span>, <span class="pl-v">tm_yday</span><span class="pl-k">=</span><span class="pl-c1">81</span>, <span class="pl-v">tm_isdst</span><span class="pl-k">=</span><span class="pl-c1">0</span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> Datetime.now().toordinal()
+<span class="pl-c1">736044</span>
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> Datetime.now().isoweekday()
+<span class="pl-c1">1</span>
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> Datetime.now().isoformat()
+<span class="pl-s"><span class="pl-pds">'</span>2016-03-21T09:08:17.488494+00:00<span class="pl-pds">'</span></span>
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> Datetime.strptime(<span class="pl-s"><span class="pl-pds">'</span>2016-03-21<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>%Y-%m-<span class="pl-c1">%d</span><span class="pl-pds">'</span></span>)
+Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-v">tzinfo</span><span class="pl-k">=</span><span class="pl-k">&lt;</span><span class="pl-c1">UTC</span><span class="pl-k">&gt;</span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> datetimeutc.Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">9</span>, <span class="pl-c1">20</span>, <span class="pl-c1">40</span>).astimezone(pytz.timezone(<span class="pl-s"><span class="pl-pds">'</span>US/Eastern<span class="pl-pds">'</span></span>))
+datetime.datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">5</span>, <span class="pl-c1">20</span>, <span class="pl-c1">40</span>, <span class="pl-v">tzinfo</span><span class="pl-k">=</span><span class="pl-k">&lt;</span>DstTzInfo <span class="pl-s"><span class="pl-pds">'</span>US/Eastern<span class="pl-pds">'</span></span> <span class="pl-c1">EDT</span><span class="pl-k">-</span><span class="pl-c1">1</span> day, <span class="pl-c1">20</span>:<span class="pl-c1">00</span>:<span class="pl-c1">00</span> <span class="pl-c1">DST</span><span class="pl-k">&gt;</span>)</pre></div>
+
+<h2>
+<a id="utilities" class="anchor" href="#utilities" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Utilities</h2>
+
+<p>Other datetime functions are available for common tasks, e.g. converting to/from javascript timestamp</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> <span class="pl-k">import</span> datetimeutc, datetime
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> datetimeutc.to_utc(datetime.datetime.now())
+datetime.datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">9</span>, <span class="pl-c1">31</span>, <span class="pl-c1">8</span>, <span class="pl-c1">455166</span>, <span class="pl-v">tzinfo</span><span class="pl-k">=</span><span class="pl-k">&lt;</span><span class="pl-c1">UTC</span><span class="pl-k">&gt;</span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> d <span class="pl-k">=</span> datetimeutc.Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">9</span>, <span class="pl-c1">20</span>, <span class="pl-c1">40</span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> d
+Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">9</span>, <span class="pl-c1">20</span>, <span class="pl-c1">40</span>, <span class="pl-v">tzinfo</span><span class="pl-k">=</span><span class="pl-k">&lt;</span><span class="pl-c1">UTC</span><span class="pl-k">&gt;</span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> d.timestamp
+<span class="pl-c1">1458552040</span>
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> d.jstimestamp 
+<span class="pl-c1">1458552040000.0</span>
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> datetimeutc.Datetime.from_jstimestamp(d.jstimestamp)
+Datetime(<span class="pl-c1">2016</span>, <span class="pl-c1">3</span>, <span class="pl-c1">21</span>, <span class="pl-c1">9</span>, <span class="pl-c1">20</span>, <span class="pl-c1">40</span>, <span class="pl-v">tzinfo</span><span class="pl-k">=</span><span class="pl-k">&lt;</span><span class="pl-c1">UTC</span><span class="pl-k">&gt;</span>)</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/whosken">whosken</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
